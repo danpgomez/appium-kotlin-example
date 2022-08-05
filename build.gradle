@@ -1,0 +1,45 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+}
+
+plugins {
+    id 'org.jetbrains.kotlin.jvm' version '1.6.21'
+    id 'java'
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
+
+    implementation "io.insert-koin:koin-core:3.2.0"
+    testImplementation "io.insert-koin:koin-test:3.2.0"
+
+    implementation 'io.appium:java-client:8.1.1'
+    implementation 'org.testng:testng:7.6.0'
+    implementation "org.jetbrains.kotlin:kotlin-reflect:1.4.21"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.4.21"
+}
+
+configurations {
+    testCompile
+}
+
+test {
+    maxHeapSize = "6144m"
+    jvmArgs "-XX:MaxMetaspaceSize=6144m"
+
+    useTestNG() {
+        useDefaultListeners = true
+    }
+}
